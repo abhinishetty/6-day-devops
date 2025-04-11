@@ -1,0 +1,65 @@
+data centre->collection of physical servers
+
+iaas
+paas
+saas
+
+aws:
+autoscsaling
+availiblity of services
+on demand
+
+
+============
+elastic kunernates ervice
+=
+comput->ec2
+
+==
+server:
+os (ami)
+server conf(instance type)
+storage
+
+==
+Linux:
+red hat family-amazon Linux,suse linux,...red hat family .......install httpd
+dbian family-ubntu seve,deioon os.....insall apache2 server,enginex server
+
+
+yum for linux ..install
+$ which tocheck if software is stalled prpeerly orot
+
+===========
+IN LIUX:
+
+$visudo
+
+permission denied
+
+so,
+$sudo su (we become root user)
+
+then give
+$ visudo
+(shift :wq)
+
+$yum install httpd
+
+$ which httpd
+$service httpd status----------->dead
+$service httpd start
+$service httpd status---->active
+
+git clone -b https://github.com/abhinishetty/Coursevita-Retail-Project.git ------------>git command not found
+so,
+$ yum install git -y
+(fork)
+$ git clone -b master https://github.com/abhinishetty/Coursevita-Retail-Project.git
+$ ls
+$ cd Coursevita-Retail-Project
+$ls
+$ cp -r . /var/www/html
+
+then instance->instance id->public ipv4 address copy->paste at new ta
+

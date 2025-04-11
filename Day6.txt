@@ -1,0 +1,118 @@
+namespace->dividing cluster  into isolated environments...…
+default "":it is ceated automatically by kubernets 
+kube-node-lease:to check the heslth of node kubernestes master nodes use this objects
+ kube-public      :anyone can able to axess the resources in this namesspace
+ kubectl get all -n kube-system  in the time of cluster creation like metric server,cni, core dni all resources will create in this namespace
+ 
+when we are deploying application production servers we will never deploy any application in the default namespace
+
+if the pod goes down there are 3
+1:we are going to get application downtile-to overcome this prblm we have to attach contrls  to the pod
+2.every pod has own ip address if pod goes down the ip address will change-to overcome this orblm we have to create services in Kubernetes .it will create static url
+3.if pod goes down along with the pod we are going to loose the data-to overcome this prblm we have to implement vlumes in kubernetes
+
+
+replica set:
+replica set is a Kubernetes object .it is going to maintain minimum number of nodes 24X7(replica set is always maintain the diresred state=actual state)
+
+
+replicaset prblms:
+in real time application we don't rcomment replica set becz we cznt able to perform roleout,roleback operations 
+
+deployments-in cubernetes we are deploying appilcations using deployment objects or deployment controller...deployment will manage replicaset .replicaset will manage the pods
+
+if we want to expose application through web browser Kubernetes will introduce objects called services.
+3 types  of service
+1.cluster ip service
+2. nodeport service
+3.loadbalancer service
+
+we are going to implement loadbalancer service now
+
+monitoring: to understand whats going inside the application we are implementing monitoring dashboards with the help of monitoring dashboards we can recognise if something goes wrong in the application also we can able to identify how much cpu,how much memeory,ports,cpu can be identified
+
+monitoring tools like promthus,grafana
+promthus is a metric server where it is going to collect time series of data it sends data to graphana dashboards
+
+grapha :with hep of graphana we can set up monitoring dashboards where we  can see your data in the form of piecharts,graphs
+
+
+sudo su
+kubectl get nodes
+kubectl get namespace
+ kubectl get all -n kube-system
+
+ kubectl create ns abhini-ns
+ kubectl get ns
+ kubectl get pods
+ kubectl run test-pod --image nginx --port 80 -n abhini-ns
+
+ kubectl get pods
+ kubectl get pods -n abhini-ns
+ kubectl delete pod test-pod -n abhini-ns
+ kubectl get pods -n abhini-ns
+
+
+in GitHub
+ git add . ; git commit -m "replicasetfile"; git push origin main;
+after copying git code
+in Linux:
+ git clone https://github.com/abhinishetty/abhini-k8s-manifests.git
+ls
+ cd abhini-k8s-manifests
+ git pull
+ kubectl apply -f rs.yaml
+ kubectl get pods -n abhini-ns
+ kubectl get rs -n abhini-ns
+ kubectl get pods -n abhini-ns
+ kubectl delete pod cart-page-rs-dlqpx -n abhini-ns
+
+next->create a cluster
+
+
+.
+.
+.
+.
+.
+kubectl get svc -n abhini-ns
+
+
+next
+ snap install helm --classic
+
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm install prometheus prometheus-community/kube-prometheus-stack \
+  --namespace monitoring --create-namespace
+kubectl get pods -n monitoring
+
+kubectl patch svc prometheus-kube-prometheus-prometheus -n monitoring \
+  -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl get svc -n monitoring
+helm install grafana grafana/grafana --namespace monitoring
+kubectl get pods -n monitoring
+kubectl patch svc grafana -n monitoring \
+  -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl get svc -n monitoring
+To Get the Password : 
+
+kubectl get secret --namespace monitoring grafana -o jsonpath="{.data.admin-password}" | base64 --decode
+
+
+
+
+
+
+
+ ad47911b7aa3e4f72acd04c326c3a3bc-1717721471.eu-north-1.elb.amazonaws.com:80
+
+username:admin
+password:G019EqXfChP3JbTGahC1hT54jSjQSkeMU9kx3JX1
+
+
+
+antriple  is ….. what systems admins do manually we perform automation using this
+
+
